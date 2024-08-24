@@ -23,7 +23,12 @@ const AddEmployeeComponent = () => {
             EmployeeService.updateEmployee(id, employee).then((response) => {
                 history.push('/employees')
             }).catch(error => {
-                console.log(error)
+                //console.log(error)
+                if (error.response && error.response.data) {
+                    setErrors(error.response.data); // Capture validation errors
+                } else {
+                    console.log(error);
+                }
             })
 
         }else{
@@ -34,7 +39,13 @@ const AddEmployeeComponent = () => {
                 history.push('/employees');
     
             }).catch(error => {
-                console.log(error)
+                //console.log(error)
+                if (error.response && error.response.data) {
+                    setErrors(error.response.data); // Capture validation errors
+					alert('Mandatory field can not be blank '); 
+                } else {
+                    console.log(error);
+                }
             })
         }
         
